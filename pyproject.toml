@@ -7,13 +7,11 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
+langchain = "^0.1.13"
 langchain-openai = "^0.1.0"
 python-dotenv = "^1.0.1"
-chromadb = "^0.4.24"
-langchain-community = "^0.0.29"
-langchain-text-splitters = "^0.0.1"
 gradio = "^4.22.0"
-langchain = "^0.1.13"
+chromadb = "^0.4.24"
 pypdf = "^4.1.0"
 
 
