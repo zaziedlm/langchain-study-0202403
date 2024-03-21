@@ -6,7 +6,7 @@ from langchain.chains import RetrievalQA
 from langchain_openai import ChatOpenAI
 from langchain_community.document_loaders import PyPDFLoader
 from dotenv import load_dotenv
-import openai
+#import openai
 import os
 import time
 
@@ -56,23 +56,28 @@ def add_text(history, text):
 
 def bot(history):
     query = history[-1][0]
+
     query = prompt.format(question=query)
-    answer = qa.run(query)
-    source = qa._get_docs(query)[0]
-    source_sentence = source.page_content
-    answer_source = source_sentence +"\n"+"source:"+source.metadata["source"] + ", page:" + str(source.metadata["page"])
-    history[-1][1] = answer # + "\n\n情報ソースは以下です：\n" + answer_source
+    #answer = qa.run(query)
+    answer = qa.invoke(query)
+    #print(type(answer))
+    # source = qa._get_docs(query)[0]
+    # source_sentence = source.page_content
+    # answer_source = source_sentence +"\n"+"source:"+source.metadata["source"] + ", page:" + str(source.metadata["page"])
+    # history[-1][1] = answer # + "\n\n情報ソースは以下です：\n" + answer_source
+    history[-1][1] = answer # + "\n\n情報ソースは以下です：\n"
     return history
 
 with gr.Blocks() as demo:
-    # chatbot = gr.Chatbot([], elem_id="chatbot").style(height=400)
-    chatbot = gr.Chatbot(label="Chat")
+    #chatbot = gr.Chatbot([], elem_id="chatbot").style(height=400)
+    chatbot = gr.Chatbot([], elem_id="chatbot")
 
     with gr.Row():
         with gr.Column(scale=0.6):
             txt = gr.Textbox(
                 show_label=False,
                 placeholder="Enter text and press enter",
+                container=False,
             )
             #).style(container=False)
 
