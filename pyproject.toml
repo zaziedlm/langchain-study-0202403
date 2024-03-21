@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "langchain-study-0202403"
+version = "0.1.0"
+description = ""
+authors = ["Shuichi Kataoka <shu01k9@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langchain-openai = "^0.1.0"
+python-dotenv = "^1.0.1"
+chromadb = "^0.4.24"
+langchain-community = "^0.0.29"
+langchain-text-splitters = "^0.0.1"
+gradio = "^4.22.0"
+langchain = "^0.1.13"
+pypdf = "^4.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
