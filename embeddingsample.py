@@ -60,12 +60,13 @@ def bot(history):
     query = prompt.format(question=query)
     #answer = qa.run(query)
     answer = qa.invoke(query)
-    #print(type(answer))
+    print(answer)
+    # TODO RAGのデータの戻り方(参照先)が変わっているようです。ひとまず暫定で参照元表示はコメントアウトします。
     # source = qa._get_docs(query)[0]
     # source_sentence = source.page_content
     # answer_source = source_sentence +"\n"+"source:"+source.metadata["source"] + ", page:" + str(source.metadata["page"])
     # history[-1][1] = answer # + "\n\n情報ソースは以下です：\n" + answer_source
-    history[-1][1] = answer # + "\n\n情報ソースは以下です：\n"
+    history[-1][1] = answer["result"] # + "\n\n情報ソースは以下です：\n"
     return history
 
 with gr.Blocks() as demo:
@@ -73,7 +74,7 @@ with gr.Blocks() as demo:
     chatbot = gr.Chatbot([], elem_id="chatbot")
 
     with gr.Row():
-        with gr.Column(scale=0.6):
+        with gr.Column(scale=1):
             txt = gr.Textbox(
                 show_label=False,
                 placeholder="Enter text and press enter",
